@@ -1,2 +1,2 @@
 # python-programming
-This is a weather forecast app
+This is weather forecast app
