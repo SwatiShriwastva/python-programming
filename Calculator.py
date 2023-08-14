@@ -7,14 +7,17 @@ root.title('Swati Calculator')
 e= Entry(root, width=35, borderwidth=10)
 e.grid(row=0, column=0, columnspan=3, padx=10, pady=10)
 
+#select a button
 def button_click(number):
     current_val=e.get()
     e.delete(0, END)
     e.insert(0, str(current_val) + str(number))
 
+#clear content of input
 def button_clear():
     e.delete(0, END)
 
+#method to add the numbers
 def button_add():
     first_num= e.get()
     global fnum
@@ -23,6 +26,34 @@ def button_add():
     fnum= int(first_num)
     e.delete(0, END)
 
+#method to subtract the numbers
+def button_subtract():
+    first_num= e.get()
+    global fnum
+    global math
+    math="subtraction"
+    fnum= int(first_num)
+    e.delete(0, END)
+
+#method to multiply the numbers
+def button_multiply():
+    first_num= e.get()
+    global fnum
+    global math
+    math="multiply"
+    fnum= int(first_num)
+    e.delete(0, END)
+
+#method to divide the numbers
+def button_divide():
+    first_num= e.get()
+    global fnum
+    global math
+    math="division"
+    fnum= int(first_num)
+    e.delete(0, END)
+
+#method to equate the results
 def button_equal():
     second_num=e.get()
     e.delete(0, END)
@@ -36,32 +67,8 @@ def button_equal():
     if math=="division":
         e.insert(0, fnum / int(second_num))
 
-def button_subtract():
-    first_num= e.get()
-    global fnum
-    global math
-    math="subtraction"
-    fnum= int(first_num)
-    e.delete(0, END)
 
-def button_multiply():
-    first_num= e.get()
-    global fnum
-    global math
-    math="multiply"
-    fnum= int(first_num)
-    e.delete(0, END)
-
-def button_divide():
-    first_num= e.get()
-    global fnum
-    global math
-    math="division"
-    fnum= int(first_num)
-    e.delete(0, END)
-   
-
-
+#create button elements
 button_1= Button(root, text="1", padx=40, pady=20, command=lambda: button_click(1))
 button_2= Button(root, text="2", padx=40, pady=20, command=lambda: button_click(2))
 button_3= Button(root, text="3", padx=40, pady=20, command=lambda: button_click(3))
@@ -80,7 +87,7 @@ button_multiply= Button(root, text="*", padx=40, pady=20, command=button_multipl
 button_divide= Button(root, text="/", padx=43, pady=20, command=button_divide)
 
 
-
+#add button elements to the window
 button_1.grid(row=3, column=0)
 button_2.grid(row=3, column=1)
 button_3.grid(row=3, column=2)
@@ -102,8 +109,5 @@ button_equal.grid(row=5, column=1, columnspan=2)
 button_subtract.grid(row=6, column=0)
 button_multiply.grid(row=6, column=1)
 button_divide.grid(row=6, column=2)
-
-
-
 
 root.mainloop()
