@@ -1,28 +1,47 @@
 from tkinter import *
-from tkinter import ttk
+from tkinter.font import Font
 
-class todo:
-    def __init__(self, root):
-        self.root = root
-        self.root.title('To_Do_List')
-        self.root.geometry('490x570')
+root=Tk()
+root.title('To Do List')
+root.geometry("500x500")
+root.resizable(False,False)
 
-        self.label = Label(self.root,text='To-Do-list-app',font='ariel, 25 bold',width=10,bd=5, bg='blue',fg='black')
-        self.label.pack(side='top',fill=BOTH)
+my_font= Font(family="Calibri",size=15,weight="bold")
 
-        self.label2 = Label(self.root, text='Add Task',font='ariel, 18 bold',width=10,bd=5, bg='blue',fg='black')
-        self.label2.place(x=40,y=54)
+my_frame = Frame(root)
+my_frame.pack(pady=10)
 
-        self.label3 = Label(self.root, text= 'Task',font='ariel, 18 bold',width=10,bd=5, bg='blue',fg='black')
-        self.label3.place(x=320,y=54)
-        
-        self.main_text=Listbox(self.root,height=9,bd=5,width=23,font=("ariel",20,"italic","bold"))
-        self.main_text.place(x=200,y=100)
+my_list= Listbox(my_frame, font=my_font, width=45,height=10,bd=2,bg="SystemButtonFace",fg="#464646")
+my_list.pack(side=LEFT,fill=BOTH)
 
-    def main():
-        root = Tk()
-        ui = todo(root)
-        root.mainloop()
+my_scroll=Scrollbar(my_frame)
+my_scroll.pack(side=RIGHT,fill=BOTH)
+my_list.config(yscrollcommand=my_scroll.set)
+my_scroll.config(command=my_list.yview)
 
-    if __name__=="__main__":
-        main()
+
+my_entry= Entry(root, font=("Calibri",20))
+my_entry.pack(pady=10)
+
+button_frame= Frame(root)
+button_frame.pack(pady=20)
+
+
+def add_item():
+    my_list.insert(END, my_entry.get())
+    my_entry.delete(0, END)
+
+def delete_item():
+    my_list.delete(ANCHOR)
+
+
+
+add_button= Button(button_frame, text="Add Item", command=add_item)
+delete_button= Button(button_frame, text="Delete Item", command=delete_item)
+
+add_button.grid(row=0, column=0, padx=20)
+delete_button.grid(row=0, column=1, padx=20)
+
+
+
+root.mainloop()
