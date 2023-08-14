@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import ttk
 import requests
 
+#method to fetch the weather information from the below api
 def data_get():
    city=city_name.get()
    data = requests.get("https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid=20ff644bac1475359cc963e3ace58594").json()
@@ -10,12 +11,15 @@ def data_get():
    temp_label1.config(text=int(data["main"]["temp"]-273.15))
    per_label1.config(text=data["main"]["pressure"])
 
+#instantiate the tkinter window
 win = Tk()
 win.title("Swati Weather App")
 win.config(bg="grey")
 win.geometry("490x570")
 win.resizable(False,False)
-   
+
+
+#adding labels on the window and fetching the corressponding weather information
 name_label =Label(win,text="Swati Weather App",font=("Time New Roman",30))
 name_label.place(x=25,y=50,height=50,width=450)
 
